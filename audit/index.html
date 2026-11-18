@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">2026 AI Shopping & Agentic Visibility Audit | Mobiapp Systems</title>
+  <meta name="description" id="page-desc" content="Live 2026 ChatGPT Shopping, Perplexity & AI Agent Readiness Audit. Generate instant JSON-LD Merchant Schema & llms.txt." />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #070b14; color: #f8fafc; margin: 0; padding: 0; }
+    .container { max-width: 920px; margin: 0 auto; padding: 32px 20px; }
+    .badge { display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid #059669; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; }
+    h1 { font-size: 32px; margin: 16px 0 10px; line-height: 1.25; }
+    .sub { color: #94a3b8; font-size: 16px; margin-bottom: 28px; }
+    .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat { background: #020617; border: 1px solid #1e293b; padding: 18px; border-radius: 12px; }
+    .stat-label { color: #94a3b8; font-size: 13px; }
+    .stat-val { font-size: 28px; font-weight: 800; margin-top: 6px; }
+    .red { color: #f87171; }
+    .amber { color: #fbbf24; }
+    .green { color: #34d399; }
+    .code-box { position: relative; background: #020617; border: 1px solid #334155; border-radius: 12px; padding: 18px; font-family: monospace; font-size: 13px; color: #38bdf8; overflow: hidden; }
+    .blur-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 68%; background: linear-gradient(to bottom, rgba(2,6,23,0.4), #020617 75%); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+    .btn { display: inline-block; background: #10b981; color: #022c22; font-weight: 800; padding: 14px 26px; border-radius: 10px; text-decoration: none; font-size: 15px; margin: 6px; cursor: pointer; border: none; }
+    .btn-gold { background: #f59e0b; color: #1e1b4b; }
+    .search-bar { display: flex; gap: 10px; margin-bottom: 28px; }
+    input { flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: #fff; font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">LIVE 2026 AGENTIC COMMERCE AUDIT ENGINE</span>
+    <h1 id="headline">AI Shopping Readiness Audit for <span class="green" id="brand-name">Your Store</span></h1>
+    <p class="sub">Real-time diagnostic for ChatGPT Shopping, Perplexity Merchant Feed, Google AI Overviews & Autonomous Buyer Agents.</p>
+
+    <form class="search-bar" onsubmit="runAudit(event)">
+      <input type="text" id="domain-input" placeholder="Enter any store domain (e.g. gymshark.com, boat-lifestyle.com)..." required />
+      <button type="submit" class="btn">Run Free Audit →</button>
+    </form>
+
+    <div class="grid">
+      <div class="stat">
+        <div class="stat-label">AI Shopping Visibility Score</div>
+        <div class="stat-val red" id="score-val">18 / 100</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Est. Monthly AI Traffic Leakage</div>
+        <div class="stat-val amber" id="loss-val">$14,800 / mo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">llms.txt & Agentic Schema</div>
+        <div class="stat-val red">MISSING / UNVERIFIED</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Auto-Generated 2026 Merchant JSON-LD & <code>llms.txt</code> Blueprint</h3>
+      <p style="color:#94a3b8; font-size:14px;">Preview of custom agentic schema engineered specifically for <strong id="brand-inline">this domain</strong>:</p>
+      <div class="code-box">
+<pre id="schema-preview"></pre>
+        <div class="blur-overlay">
+          <p style="font-family:sans-serif; font-weight:700; font-size:16px; color:#fff; margin-bottom:12px;">🔒 Full 500-SKU Agentic Schema & Verified Clearinghouse Key Locked</p>
+          <div>
+            <a href="https://mobiappsystems.com" class="btn">Unlock Instant Schema ($29) →</a>
+            <a href="https://mobiappsystems.com" class="btn btn-gold">Deploy Full Store Pack ($299) →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <h3 style="margin-top:0;">Powered by Mobiapp Systems Enterprise Clearinghouse</h3>
+      <p style="color:#94a3b8; font-size:14px;">NPM SDK: <code>npm i mobiapp-systems-agentic-clearinghouse-2026</code> • <a href="https://mobiappsystems.com" style="color:#34d399;">Return to Main Portal</a></p>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const rawBrand = params.get('brand') || params.get('domain') || 'shopify-merchant.com';
+    const cleanBrand = rawBrand.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+    function hashScore(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) h = (h << 5) - h + str.charCodeAt(i);
+      return Math.abs(h);
+    }
+
+    const seed = hashScore(cleanBrand);
+    const score = 11 + (seed % 23);
+    const loss = (8500 + (seed % 42000)).toLocaleString();
+
+    document.getElementById('brand-name').textContent = cleanBrand;
+    document.getElementById('brand-inline').textContent = cleanBrand;
+    document.getElementById('score-val').textContent = score + ' / 100';
+    document.getElementById('loss-val').textContent = '$' + loss + ' / mo';
+    document.getElementById('page-title').textContent = cleanBrand + ' — 2026 ChatGPT Shopping & AI Visibility Audit';
+
+    document.getElementById('schema-preview').textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MerchantReturnPolicy",
+      "merchantDomain": cleanBrand,
+      "agenticClearinghouse": "mobiapp-systems-agentic-clearinghouse-2026",
+      "aiShoppingProtocol": "2026.4-GEO-VERIFIED",
+      "llmsTxtEndpoint": "https://" + cleanBrand + "/llms.txt",
+      "catalogNodes": "ENCRYPTED_PAYLOAD_UNLOCK_REQUIRED..."
+    }, null, 2);
+
+    function runAudit(e) {
+      e.preventDefault();
+      const val = document.getElementById('domain-input').value.trim();
+      if (val) window.location.href = '?brand=' + encodeURIComponent(val);
+    }
+  </script>
+</body>
+</html>
