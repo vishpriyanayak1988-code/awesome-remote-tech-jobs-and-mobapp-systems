@@ -1,4 +1,4 @@
-name: Auto Generate 2026 AI Audit Sitemap
+name: Auto Generate 500K AI Audit Sitemaps
 on:
   workflow_dispatch:
   schedule:
@@ -6,40 +6,41 @@ on:
 permissions:
   contents: write
 jobs:
-  build-sitemap:
+  build-500k-sitemaps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate Audit Sitemap
+      - name: Generate 500,000 Audit URLs
         run: |
           python3 -c '
-          brands = [
-            "gymshark.com", "boat-lifestyle.com", "mamaearth.in", "nykaa.com", "glossier.com",
-            "fashionnova.com", "allbirds.com", "colourpop.com", "lenskart.com", "sugarcosmetics.com",
-            "kyliecosmetics.com", "fentybeauty.com", "bombas.com", "warbyparker.com", "casper.com",
-            "awaytravel.com", "brooklinen.com", "puravida.com", "mvmt.com", "ridge.com",
-            "beardbrand.com", "huel.com", "athleticgreens.com", "chubbies.com", "untuckit.com",
-            "rothys.com", "everlane.com", "reformation.com", "alo.com", "lululemon.com",
-            "sephora.com", "ulta.com", "asos.com", "boohoo.com", "prettylittlething.com",
-            "shein.com", "zara.com", "hm.com", "uniqlo.com", "mango.com",
-            "bewakoof.com", "souledstore.com", "snitch.co.in", "mcaffeine.com", "plumgoodness.com",
-            "wowskinscience.com", "minimalist.co", "dotandkey.com", "forestessentialsindia.com", "kamaayurveda.com"
+          industries = [
+            "shopify", "skincare", "fashion", "electronics", "jewelry", "fitness", "beauty", "home-decor", "supplements", "pet-care",
+            "apparel", "footwear", "watches", "eyewear", "cosmetics", "organic-food", "coffee", "tea", "wellness", "yoga",
+            "gaming", "gadgets", "audio", "furniture", "lighting", "kitchenware", "baby-care", "toys", "books", "stationery",
+            "automotive", "cycling", "camping", "travel-gear", "luggage", "handbags", "perfume", "haircare", "menswear", "womenswear",
+            "activewear", "swimwear", "lingerie", "sneakers", "streetwear", "luxury", "vintage", "art-prints", "plants", "tools"
           ]
-          categories = ["shopify", "skincare", "fashion", "electronics", "jewelry", "fitness", "beauty", "home-decor", "supplements", "pet-care"]
-          urls = ["  <url><loc>https://mobiappsystems.com</loc><priority>0.9</priority></url>"]
-          for b in brands:
-              urls.append(f"  <url><loc>https://mobiappsystems.com?brand={b}</loc><priority>0.8</priority></url>")
-          for i in range(1, 501):
-              for c in categories:
-                  urls.append(f"  <url><loc>https://mobiappsystems.com?brand={c}-store-{i}.com</loc><priority>0.7</priority></url>")
-          xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://sitemaps.org\">\n" + "\n".join(urls) + "\n</urlset>"
+          index_entries = []
+          for file_num in range(1, 11):
+              urls = []
+              start_idx = (file_num - 1) * 1000 + 1
+              end_idx = file_num * 1000 + 1
+              for i in range(start_idx, end_idx):
+                  for ind in industries:
+                      urls.append(f"  <url><loc>https://mobiappsystems.com{ind}-merchant-{i}.com</loc><priority>0.7</priority></url>")
+              xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://sitemaps.org\">\n" + "\n".join(urls) + "\n</urlset>"
+              fname = f"sitemap-audit-{file_num}.xml"
+              with open(fname, "w") as f:
+                  f.write(xml)
+              index_entries.append(f"  <sitemap><loc>https://mobiappsystems.com{fname}</loc></sitemap>")
+          index_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://sitemaps.org\">\n" + "\n".join(index_entries) + "\n</sitemapindex>"
           with open("sitemap-audit.xml", "w") as f:
-              f.write(xml)
+              f.write(index_xml)
           '
-      - name: Commit Sitemap
+      - name: Commit 500K Sitemaps
         run: |
-          git config user.name "Mobiapp Bot"
+          git config user.name "Mobiapp Mega Bot"
           git config user.email "admin@mobiappsystems.com"
-          git add sitemap-audit.xml
-          git commit -m "Auto-update 5,000+ AI audit URLs" || exit 0
+          git add sitemap-audit*.xml
+          git commit -m "Deploy 500,000+ AI audit URLs across 10 sitemaps" || exit 0
           git push
