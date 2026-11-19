@@ -1,0 +1,41 @@
+name: IndexNow Instant AI Search Blast
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+jobs:
+  push-to-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push 10,000 URLs to Bing & ChatGPT Search
+        run: |
+          python3 -c '
+          import urllib.request, json, re, random
+
+          try:
+              with open("sitemap-audit-1.xml", "r") as f:
+                  content = f.read()
+              all_urls = re.findall(r"<loc>(.*?)</loc>", content)
+              batch = random.sample(all_urls, min(10000, len(all_urls)))
+          except Exception as e:
+              batch = ["https://mobiappsystems.com", "https://mobiappsystems.com"]
+
+          payload = json.dumps({
+              "host": "mobiappsystems.com",
+              "key": "mobiapp2026indexnowkey8899",
+              "keyLocation": "https://mobiappsystems.com",
+              "urlList": batch
+          }).encode("utf-8")
+
+          req = urllib.request.Request(
+              "https://indexnow.org",
+              data=payload,
+              headers={"Content-Type": "application/json; charset=utf-8"}
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  print("IndexNow Response Status:", resp.status)
+          except Exception as e:
+              print("IndexNow Notice:", e)
+          '
