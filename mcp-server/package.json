@@ -2,15 +2,12 @@
   "name": "mobiapp-systems-mcp-server",
   "version": "1.0.0",
   "type": "module",
-  "description": "Official 2026 Model Context Protocol (MCP) Server for Shopify & E-Commerce AI Shopping Readiness, llms.txt & JSON-LD Merchant Schema.",
+  "description": "Official 2026 Zero-Dependency Model Context Protocol (MCP) Server for Shopify & E-Commerce AI Shopping Readiness, llms.txt & JSON-LD Merchant Schema.",
   "main": "index.js",
   "bin": {
     "mobiapp-mcp": "./index.js"
   },
   "keywords": ["mcp", "claude", "cursor", "shopify", "ai-shopping", "llms-txt", "schema", "ecommerce"],
   "author": "Mobiapp Systems",
-  "license": "MIT",
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "latest"
-  }
+  "license": "MIT"
 }
