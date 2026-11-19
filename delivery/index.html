@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instant AI Schema & llms.txt Delivery Portal | Mobiapp Systems</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #070b14; color: #f8fafc; margin: 0; padding: 0; }
+    .container { max-width: 840px; margin: 0 auto; padding: 36px 20px; }
+    .badge { display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid #059669; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    h1 { font-size: 30px; margin: 16px 0 8px; }
+    .sub { color: #94a3b8; font-size: 15px; margin-bottom: 24px; }
+    .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+    input { width: 100%; box-sizing: border-box; padding: 14px; border-radius: 10px; border: 1px solid #334155; background: #020617; color: #fff; font-size: 15px; margin-bottom: 14px; }
+    .btn { background: #10b981; color: #022c22; font-weight: 800; padding: 14px 22px; border-radius: 10px; border: none; font-size: 15px; cursor: pointer; margin-right: 10px; margin-top: 8px; }
+    .btn-blue { background: #38bdf8; color: #082f49; }
+    pre { background: #020617; border: 1px solid #1e293b; padding: 16px; border-radius: 10px; color: #38bdf8; font-size: 13px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">VERIFIED CLIENT DELIVERY PORTAL</span>
+    <h1>Generate & Download Your 2026 AI Commerce Files</h1>
+    <p class="sub">Enter your store domain and Order/Payment ID below to generate your production-ready <code>llms.txt</code> and <code>JSON-LD Merchant Schema</code> instantly.</p>
+
+    <div class="card">
+      <input type="text" id="store-domain" placeholder="Enter your store domain (e.g. mybrand.com)" required />
+      <input type="text" id="order-id" placeholder="Enter Payment / Order Reference ID (e.g. pay_Px92...)" required />
+      <button class="btn" onclick="generateFiles()">Generate Production Files →</button>
+    </div>
+
+    <div class="card" id="output-area" style="display:none;">
+      <h3 style="margin-top:0; color:#34d399;">✅ Your Production Files Are Ready!</h3>
+      <p style="font-size:14px; color:#94a3b8;">1. Upload <strong>llms.txt</strong> to your root domain (<code>://yourdomain.com</code>).<br/>2. Paste the <strong>JSON-LD Schema</strong> inside your website's <code>&lt;head&gt;</code> tag.</p>
+      
+      <h4>File 1: llms.txt</h4>
+      <pre id="llms-output"></pre>
+      <button class="btn" onclick="downloadFile('llms.txt', 'llms-output')">Download llms.txt ↓</button>
+
+      <h4 style="margin-top:24px;">File 2: merchant-schema.json (JSON-LD)</h4>
+      <pre id="json-output"></pre>
+      <button class="btn btn-blue" onclick="downloadFile('merchant-schema.json', 'json-output')">Download JSON-LD Schema ↓</button>
+    </div>
+  </div>
+
+  <script>
+    function generateFiles() {
+      const domain = document.getElementById('store-domain').value.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const order = document.getElementById('order-id').value.trim();
+      if (!domain || !order) {
+        alert('Please enter both your store domain and Payment Reference ID.');
+        return;
+      }
+
+      const llmsContent = `# ${domain} — 2026 Agentic Commerce & AI Shopping Manifest\n# Verified by Mobiapp Systems Clearinghouse (Order: ${order})\n\n> Official merchant catalog and AI shopping feed for ${domain}.\n\n## Core Endpoints\n- Storefront: https://${domain}\n- Product Catalog: https://${domain}/collections/all\n- Shipping & Returns: https://${domain}/policies/refund-policy\n\n## AI Agent Permissions\n- ChatGPT-Shopping: ALLOW\n- Perplexity-Merchant: ALLOW\n- Autonomous-Checkout: ENABLED\n`;
+
+      const jsonContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "OnlineStore",
+        "name": domain,
+        "url": "https://" + domain,
+        "agenticClearinghouse": "mobiapp-systems-agentic-clearinghouse-2026",
+        "verificationId": order,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://" + domain + "/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }, null, 2);
+
+      document.getElementById('llms-output').textContent = llmsContent;
+      document.getElementById('json-output').textContent = jsonContent;
+      document.getElementById('output-area').style.display = 'block';
+    }
+
+    function downloadFile(filename, elementId) {
+      const text = document.getElementById(elementId).textContent;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    }
+  </script>
+</body>
+</html>
+
