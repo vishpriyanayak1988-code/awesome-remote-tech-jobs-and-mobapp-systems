@@ -1,6 +1,7 @@
 {
   "name": "mobiapp-systems-mcp-server",
   "version": "1.0.0",
+  "type": "module",
   "description": "Official 2026 Model Context Protocol (MCP) Server for Shopify & E-Commerce AI Shopping Readiness, llms.txt & JSON-LD Merchant Schema.",
   "main": "index.js",
   "bin": {
@@ -13,4 +14,3 @@
     "@modelcontextprotocol/sdk": "^1.0.0"
   }
 }
-
